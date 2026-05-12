@@ -244,7 +244,7 @@ export default function Hero() {
 
 </div>
 
-{/* LOCATION BOX */}
+{/* LOCATION BOX
 <div
   className="
     absolute
@@ -268,7 +268,7 @@ export default function Hero() {
     Lahore, PK
   </p>
 
-</div>
+</div> */}
               </div>
 
             </div>
