@@ -248,23 +248,23 @@ export default function Hero() {
 <div
   className="
     absolute
-    bottom-5
-    right-[-24px]
+    bottom-4 sm:bottom-5
+    right-[-8px] sm:right-[-18px]
     z-30
-    rounded-[22px]
-    border border-white/20
-    bg-teal/88
-    px-5 py-4
+    rounded-[20px]
+    border border-white/15
+    bg-teal/82
+    px-4 py-3
     shadow-[0_18px_40px_rgba(0,0,0,0.16)]
     backdrop-blur-xl
   "
 >
 
-  <p className="mono text-[9px] uppercase tracking-[0.24em] text-white/60">
+  <p className="mono text-[8px] uppercase tracking-[0.22em] text-white/60">
     Location
   </p>
 
-  <p className="mt-1 text-[13px] font-semibold text-white whitespace-nowrap">
+  <p className="mt-1 text-[12px] sm:text-[13px] font-semibold text-white whitespace-nowrap">
     Lahore, PK
   </p>
 
