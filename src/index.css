@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #faf6ee;
+  --text: #1b4543;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(179, 208, 198, 0.42), transparent 30%),
+    radial-gradient(circle at top right, rgba(240, 190, 111, 0.18), transparent 24%),
+    #faf6ee;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(240, 190, 111, 0.34);
+}
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: 'Fraunces', serif;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+html.cursor-off,
+html.cursor-off * {
+  cursor: auto !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 60;
+  mix-blend-mode: multiply;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #1b4543;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1px solid rgba(27, 69, 67, 0.45);
+  transform: translate(-50%, -50%);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.cursor-ring.hovering {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(240, 190, 111, 0.9);
+  background: rgba(240, 190, 111, 0.08);
+}
+
+/* =========================================
+   LINKS
+========================================= */
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.15rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* =========================================
+   PROJECTS
+========================================= */
+
+.project-scroll {
+  overflow: hidden;
+  position: relative;
+}
+
+/* MOBILE AUTO CAROUSEL */
+
+.mobile-carousel {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+
+  animation: autoScrollProjects 30s linear infinite;
+  will-change: transform;
+}
+
+.mobile-carousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes autoScrollProjects {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+/* MOBILE CARDS */
+
+.project-card-mobile {
+  width: 240px;
+  min-width: 240px;
+  min-height: 340px;
+
+  scroll-snap-align: start;
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card-mobile:hover {
+  transform: translateY(-4px);
+}
+
+/* Scrollbar */
+
+.project-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.project-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 76, 74, 0.05);
+  border-radius: 999px;
+}
+
+.project-scroll::-webkit-scrollbar-thumb {
+  background: rgba(15, 76, 74, 0.22);
+  border-radius: 999px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+  .project-scroll {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent
+    );
+  }
+
+  .mobile-carousel {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .project-card-mobile {
+    width: 235px;
+    min-width: 235px;
+  }
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+
+  .mobile-carousel {
+    animation: none;
+    transform: none;
+  }
+
+  .project-scroll {
+    overflow: visible;
+  }
+}
+
+/* =========================================
+   EXTRA SMOOTHNESS
+========================================= */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+button,
+a {
+  user-select: none;
+}
